@@ -1,0 +1,32 @@
+<div>
+      <h1>Counter</h1>
+      <p>Count: <span id="count">0</span></p>
+      <button id="increment">Increment</button>
+      <button id="decrement">Decrement</button>
+      <button id="reset">Reset</button>
+</div>
+
+<script>
+      
+      const countElement = document.getElementById('count');
+      const incrementButton = document.getElementById('increment');
+      const decrementButton = document.getElementById('decrement');
+
+      let count = 0;
+
+      incrementButton.addEventListener('click', () => {
+            count++;
+            countElement.textContent = count;
+      });
+
+      decrementButton.addEventListener('click', () => {
+            count--;
+            countElement.textContent = count;
+      });
+
+      document.getElementById('reset').addEventListener('click', () => {
+            count = 0;
+            countElement.textContent = count;
+      });
+
+</script>

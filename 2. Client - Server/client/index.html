@@ -1,0 +1,73 @@
+<div id="react-example"></div>
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"></script>
+
+<script type="text/babel">
+
+const { useState } = React;
+
+function Pokemon () {
+
+      const [email, setEmail] = useState('');
+      const [password, setPassword] = useState('');
+
+      const [loggedInUser, setLoggedInUser] = useState(null);
+
+      const handleSubmit = async () => {
+
+            const res = await axios.post('http://127.0.0.1:5000/login', {
+                  email: email,
+                  password: password
+            });
+
+            if (res.data.success) {
+                  setLoggedInUser(res.data.user);
+            } else {
+                  alert(res.data.message);
+                  window.location.reload();
+            };
+
+      };
+
+      return (
+            <div>
+                  {
+                        loggedInUser ? (
+                              <div>
+                                    <h1>Welcome {loggedInUser.email}</h1>
+                                    <img src={loggedInUser.pokemon_image} />
+                              </div>
+                        ) : (
+                              <div>
+                                    <div>
+                                          <span>Email:</span> <input value={email} onChange={() => {
+                                                setEmail(event.target.value);
+                                          }} type="text" name="email" />
+                                    </div>
+                                    <div>
+                                          <span>Password:</span> <input value={password} onChange={() => {
+                                                      setPassword(event.target.value);
+                                                }}
+                                          type="password" name="password" />
+                                    </div>
+                                    <button onClick={() => {
+                                          handleSubmit();
+                                    }}>Submit</button>
+                              </div>
+                        )
+                  }
+            </div>
+      )
+
+};
+
+ReactDOM.render(
+    <Pokemon/>,
+    document.getElementById('react-example')
+);
+
+</script>

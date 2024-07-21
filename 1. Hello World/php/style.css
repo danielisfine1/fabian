@@ -1,0 +1,20 @@
+.emoji {
+      width: 150px;
+}
+
+.emoji.big {
+      width: 300px;
+}
+
+.cars .country {
+      color: red;
+}
+
+.cars .brand {
+      color: blue;
+}
+
+.chess-container {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+}

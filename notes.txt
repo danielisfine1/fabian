@@ -1,0 +1,2 @@
+1. To install PHP: https://www.apachefriends.org/
+2. To install MySQL: https://www.mysql.com/downloads/
